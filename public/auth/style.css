@@ -1,0 +1,26 @@
+body {
+    background-color: rgb(31, 100, 152);
+    color: white;
+    font-family: monospace;
+}
+
+.heading {
+    margin-top: 8%;
+    text-align: center;
+    font-size: 2.2rem;
+}
+
+.desc {
+    margin-top: 4rem;
+    font-size: 1.5rem;
+    border: 2px solid orange;
+    display: flex;
+    align-items: center;
+    height: 125px;
+    padding-left: 20px;
+}
+
+#firebaseui-auth-container {
+    position: absolute;
+    right: 0;
+}

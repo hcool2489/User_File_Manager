@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <title>Fl-Mng: Dashboard</title>
+</head>
+
+<body>
+    <div class="section user">
+        <h1 class="heading">🔓 Welcome to User File Manager</h1>
+        <div class="right">
+            <div style="margin-right: 20px;">
+                <span><% if(user && user.name){ %><%= user.name %><% } else { %><%= user.email %><% } %></span>
+                <br>
+                <span><a href="/auth/logout">Logout</a></span>
+            </div>
+            <span><% if(user && user.picture){ %><img src="<%= user.picture %>"><% } %></span>
+        </div>
+    </div>
+    <form method="post" action="/upload" enctype="multipart/form-data">
+        <div class="section">
+            <span class="s1">
+                Upload File:
+            </span>
+            <div class="s2 drop-zone">
+                <span class="drop-zone__prompt">Drop file here or click to upload</span>
+                <input oninvalid="alert('Select a File !!')" required type="file" name="file" class="drop-zone__input">
+            </div>
+            <div class="s3">
+                <button class="btn green" type="submit">Upload</button>
+            </div>
+        </div>
+    </form>
+    <div class="" style="margin-top: 20px; font-size: 15px;">
+        <h3 style="text-align: center;">------- Your Files -------</h3><br>
+        <table class="fTable">
+            <tr>
+                <th>S.No.</th>
+                <th>Name</th>
+                <th>Download</th>
+            </tr>
+            <% if(files.length == 0){ %>
+            <tr>
+                <td colspan="3" style="text-align: center;">No Files Found !</td>
+            </tr>
+            <% } else { %>
+            <% for (let i = 0; i < files.length; i++) {
+                    const file = files[i]; %>
+            <tr>
+                <td><%= i+1 %></td>
+                <td><%= file %></td>
+                <td><a href="/download/<%= file %>" target="_blank">Download 📄</a></td>
+            </tr>
+            <% } } %>
+        </table>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
